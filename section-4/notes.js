@@ -1,3 +1,4 @@
+//!from section 4
 const fs = require('fs')
 
 const getNotes = () => {
@@ -7,9 +8,10 @@ const getNotes = () => {
 const addNote =(title, body) => {
    const Notes = loadNotes()
 
-   const duplicateNotes = Notes.filter((note) => note.title === title)
+   const duplicateNote = Notes.find((note) => note.title === title)
 
-   if (duplicateNotes.length === 0) {
+
+   if (!duplicateNote) {
       Notes.push({
          title: title,
          body: body
@@ -38,6 +40,33 @@ const removeNote = (title) => {
   
 }
 
+const listNotes = () => {
+   const Notes = loadNotes()
+   console.log('your notes')
+
+   Notes.forEach((note) => {
+      console.log(note.title)
+   })
+
+}
+
+const readNotes = (title) => {
+   const Notes = loadNotes()
+
+   
+   const duplicateNote = Notes.find((note) => note.title === title)
+
+   if (duplicateNote) {
+      console.log(duplicateNote.body)
+   } else {
+      console.log("title not found, check your spelling")
+   }
+
+
+}
+
+
+
 const loadNotes = () => {
    try{
       const databuffer = fs.readFileSync('notes.json')
@@ -59,6 +88,8 @@ const saveNotes = (Notes) => {
 module.exports = {
    getNotes: getNotes,
    addNote: addNote,
-   removeNote: removeNote
+   removeNote: removeNote,
+   listNotes: listNotes,
+   readNotes: readNotes
 }
 

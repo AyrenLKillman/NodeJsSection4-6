@@ -1,3 +1,5 @@
+//!from section 4
+
 const yargs = require('yargs')
 const noteUtilities = require('./notes')
 
@@ -42,15 +44,22 @@ yargs.command({
     command: 'list',
     describe: 'list the notes',
     handler: () => {
-        noteUtilities.ListNotes()
+        noteUtilities.listNotes()
     }
 })
 
 yargs.command({
     command: 'read',
     describe: 'read the note',
-    handler: () => {
-        console.log("Reading notes")
+    builder: {
+        title: {
+            describe: 'Note Title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: (argv) => {
+        noteUtilities.readNotes(argv.title)
     }
 })
 
