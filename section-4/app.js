@@ -63,5 +63,6 @@ yargs.command({
     }
 })
 
-//! VERY IMPORTANT TO HAVE THIS CONSOLE LOG
+//! VERY IMPORTANT TO HAVE THIS
 yargs.parse()
+
