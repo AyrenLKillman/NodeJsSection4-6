@@ -28,7 +28,7 @@ const geocodeURL = 'https://api.mapbox.com/geocoding/v6/mapbox.places/Los%20Ange
 request({ url: geocodeURL, json: true }, (error, response) => {
         if (error){
         console.log('unable to connect')
-    } else if (response.body.error) {
+    } else if (response.body.features.length === 0) {
         console.log('unable to find location')
     } 
     else {
